@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 public class LobbyStatus extends GameStatus {
 
     public LobbyStatus() {
-        super(60, Sets.newHashSet(60, 30, 15, 10, 5, 4, 3, 2, 1));
+        super(30, Sets.newHashSet(30, 15, 10, 5, 4, 3, 2, 1));
     }
 
     @Override
@@ -30,7 +30,12 @@ public class LobbyStatus extends GameStatus {
 
     @Override
     public void onCountdownFinished() {
-        Wizards.getGame().changeGameState(GameState.IN_GAME);
+        if (Wizards.getGame().canStart()) {
+            Wizards.getGame().changeGameState(GameState.IN_GAME);
+        }
+        else {
+            reset();
+        }
     }
 
     @Override
@@ -43,7 +48,7 @@ public class LobbyStatus extends GameStatus {
 
     @Override
     public void tickBroadcast() {
-        Wizards.broadcast("lobby-tick", counter);
+        Wizards.broadcast(counter == 1 ? "lobby-tick-one" : "lobby-tick", counter);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 1f, 1f);

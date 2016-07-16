@@ -5,6 +5,7 @@ import de.craplezz.wizards.config.ConfigLoader;
 import de.craplezz.wizards.config.LocalesConfig;
 import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
+import de.craplezz.wizards.listener.player.PlayerInteractAtEntityListener;
 import de.craplezz.wizards.listener.player.PlayerJoinListener;
 import de.craplezz.wizards.manager.LanguageManager;
 import de.craplezz.wizards.map.WizardsMap;
@@ -58,12 +59,13 @@ public class Wizards extends JavaPlugin {
 
             // Game
             game = new Game();
-            map = new WizardsMap();
+            map = new WizardsMap(new File(mainConfig.getMapPath()));
             map.load();
 
             // Listener
             for (Listener listener : Arrays.asList(
-                    new PlayerJoinListener()
+                    new PlayerJoinListener(),
+                    new PlayerInteractAtEntityListener()
             )) {
                 Bukkit.getPluginManager().registerEvents(listener, this);
             }

@@ -1,5 +1,6 @@
 package de.craplezz.wizards.game.status;
 
+import de.craplezz.wizards.Wizards;
 import de.craplezz.wizards.game.GameStatus;
 
 /**
@@ -14,7 +15,7 @@ public class IngameStatus extends GameStatus {
 
     @Override
     public void onEnter() {
-
+        Wizards.getMap().teleportPlayers();
     }
 
     @Override

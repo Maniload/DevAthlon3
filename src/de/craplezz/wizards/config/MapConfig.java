@@ -11,8 +11,14 @@ import java.util.List;
 public class MapConfig implements Config {
 
     private List<SimpleLocation> spawnLocations;
+    private List<SimpleLocation> armorStandLocations;
 
     public List<SimpleLocation> getSpawnLocations() {
         return spawnLocations;
     }
+
+    public List<SimpleLocation> getArmorStandLocations() {
+        return armorStandLocations;
+    }
+
 }

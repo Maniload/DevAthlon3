@@ -27,7 +27,7 @@ public class WizardsMap {
 
     private MapConfig mapConfig;
 
-    public void WizardsMap(File worldDir) {
+    public WizardsMap(File worldDir) {
         this.worldDir = worldDir;
     }
 
@@ -36,11 +36,16 @@ public class WizardsMap {
         world = worldCreator.createWorld();
 
         mapConfig = ConfigLoader.load(new File(worldDir, "config.json"), MapConfig.class);
+
+        prepare();
+    }
+
+    public void prepare() {
+
     }
 
     public void teleportPlayers() {
         List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
-
 
         new BukkitRunnable() {
 
@@ -48,7 +53,7 @@ public class WizardsMap {
 
             @Override
             public void run() {
-                if (players.size() <= index && mapConfig.getSpawnLocations().size() <= index) {
+                if (players.size() > index && mapConfig.getSpawnLocations().size() > index) {
                     players.get(index).teleport(mapConfig.getSpawnLocations().get(index++).toBukkitLocation(world));
                 }
                 else {

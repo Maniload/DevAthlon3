@@ -1,6 +1,7 @@
 package de.craplezz.wizards.user;
 
 import de.craplezz.wizards.Wizards;
+import de.craplezz.wizards.kit.KitType;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
@@ -18,6 +19,7 @@ public class User {
 
     private Player player;
     private Locale locale = Locale.forLanguageTag("de_DE");
+    private KitType kitType;
 
     public User(Player player) {
         this.player = player;
@@ -37,6 +39,10 @@ public class User {
         }
 
         player.sendMessage(message);
+    }
+
+    public KitType getKitType() {
+        return kitType;
     }
 
     public static User getUser(Player player) {

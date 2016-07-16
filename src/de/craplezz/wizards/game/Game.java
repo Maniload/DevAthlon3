@@ -29,6 +29,10 @@ public class Game {
         gameState.getGameStatus().onEnter();
     }
 
+    public GameState getGameState() {
+        return gameState;
+    }
+
     public boolean canStart() {
         return Bukkit.getOnlinePlayers().size() >= Wizards.getMainConfig().getNeededPlayers();
     }
