@@ -39,7 +39,8 @@ public class WizardsMap {
         mapConfig = ConfigLoader.load(new File(worldDir, "config.json"), MapConfig.class);
 
         lobbyMap = new LobbyMap(mapConfig);
-        lobbyMap.prepare();
+
+        Bukkit.getScheduler().runTaskLater(Wizards.getInstance(), () -> lobbyMap.prepare(), 10L);
     }
 
     public void teleportPlayers() {

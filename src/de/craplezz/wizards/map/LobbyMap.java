@@ -9,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.function.Consumer;
@@ -28,10 +27,6 @@ public class LobbyMap {
 
     public void prepare() {
         World world = Bukkit.getWorld("world");
-
-        for (Entity entity : world.getEntities()) {
-            entity.remove();
-        }
 
         int index = 0;
         for (SimpleLocation simpleLocation : mapConfig.getArmorStandLocations()) {

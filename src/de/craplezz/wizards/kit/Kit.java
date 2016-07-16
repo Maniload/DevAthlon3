@@ -5,6 +5,7 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import org.apache.commons.lang3.ArrayUtils;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
@@ -34,15 +35,18 @@ public abstract class Kit {
 
     protected final String name;
 
+    protected final BarColor barColor;
+
     protected final ItemStack[] inventoryItems = new ItemStack[36];
 
     protected final ItemStack[] armorItems = new ItemStack[4];
 
     protected final Set<PotionEffect> potionEffects = new HashSet<>();
 
-    public Kit(int id, String name) {
+    public Kit(int id, String name, BarColor barColor) {
         this.id = id;
         this.name = name;
+        this.barColor = barColor;
 
         kitsById.put(id, this);
 
@@ -84,7 +88,12 @@ public abstract class Kit {
     }
 
     public void apply(ArmorStand armorStand) {
-        armorStand.getEquipment().setArmorContents(armorItems);
+        // Set armor after reversing it
+        ItemStack[] armorItemsCopy = new ItemStack[4];
+        System.arraycopy(armorItems, 0, armorItemsCopy, 0, 4);
+        ArrayUtils.reverse(armorItemsCopy);
+
+        armorStand.getEquipment().setArmorContents(armorItemsCopy);
         armorStand.setItemInHand(inventoryItems[0]);
     }
 
@@ -106,6 +115,10 @@ public abstract class Kit {
 
     public String getName() {
         return name;
+    }
+
+    public BarColor getBarColor() {
+        return barColor;
     }
 
     public static Kit getById(int id) {

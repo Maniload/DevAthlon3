@@ -27,7 +27,11 @@ public class User {
     }
 
     public void sendPrefixedMessage(String message) {
-        player.sendMessage("§f[§5Wizards§f] §7");
+        player.sendMessage("§f[§5Wizards§f] §7" + message);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public KitType getKitType() {

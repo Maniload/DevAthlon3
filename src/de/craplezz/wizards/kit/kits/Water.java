@@ -3,6 +3,7 @@ package de.craplezz.wizards.kit.kits;
 import de.craplezz.wizards.kit.Kit;
 import de.craplezz.wizards.util.ItemBuilders;
 import org.bukkit.Color;
+import org.bukkit.boss.BarColor;
 
 /**
  * @author Overload
@@ -11,7 +12,7 @@ import org.bukkit.Color;
 public class Water extends Kit {
 
     public Water() {
-        super(3, "Wasser");
+        super(3, "Wasser", BarColor.BLUE);
 
         armorItems[HELMET] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.HELMET).dye(Color.BLUE).unbreakable().build();
         armorItems[CHESTPLATE] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.CHESTPLATE).dye(Color.BLUE).unbreakable().build();

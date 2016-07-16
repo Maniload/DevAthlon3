@@ -1,13 +1,16 @@
 package de.craplezz.wizards;
 
 import com.google.gson.Gson;
+import de.craplezz.wizards.command.KitCommand;
 import de.craplezz.wizards.config.ConfigLoader;
 import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
 import de.craplezz.wizards.listener.player.PlayerInteractAtEntityListener;
+import de.craplezz.wizards.listener.player.PlayerInteractListener;
 import de.craplezz.wizards.listener.player.PlayerJoinListener;
 import de.craplezz.wizards.manager.ArmorStandManager;
 import de.craplezz.wizards.map.WizardsMap;
+import de.craplezz.wizards.task.BossBarTask;
 import de.craplezz.wizards.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -38,6 +41,9 @@ public class Wizards extends JavaPlugin {
     private static Game game;
     private static WizardsMap map;
 
+    // Tasks
+    private static BossBarTask bossBarTask;
+
     @Override
     public void onEnable() {
 
@@ -59,13 +65,21 @@ public class Wizards extends JavaPlugin {
             map = new WizardsMap(new File(mainConfig.getMapPath()));
             map.load();
 
+            // Tasks
+            bossBarTask = new BossBarTask();
+            bossBarTask.runTaskTimer(this, 20L, 20L);
+
             // Listener
             for (Listener listener : Arrays.asList(
                     new PlayerJoinListener(),
-                    new PlayerInteractAtEntityListener()
+                    new PlayerInteractAtEntityListener(),
+                    new PlayerInteractListener()
             )) {
                 Bukkit.getPluginManager().registerEvents(listener, this);
             }
+
+            // Commands
+            getCommand("kit").setExecutor(new KitCommand());
 
         } catch (IOException e) {
             e.printStackTrace();

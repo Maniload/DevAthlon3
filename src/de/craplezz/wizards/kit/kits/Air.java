@@ -3,6 +3,7 @@ package de.craplezz.wizards.kit.kits;
 import de.craplezz.wizards.kit.Kit;
 import de.craplezz.wizards.util.ItemBuilders;
 import org.bukkit.Color;
+import org.bukkit.boss.BarColor;
 
 /**
  * @author Overload
@@ -11,7 +12,7 @@ import org.bukkit.Color;
 public class Air extends Kit {
 
     public Air() {
-        super(0, "Luft");
+        super(0, "Luft", BarColor.YELLOW);
 
         armorItems[HELMET] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.HELMET).dye(Color.YELLOW).unbreakable().build();
         armorItems[CHESTPLATE] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.CHESTPLATE).dye(Color.YELLOW).unbreakable().build();
