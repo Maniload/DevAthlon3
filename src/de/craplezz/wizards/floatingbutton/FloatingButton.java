@@ -16,13 +16,13 @@ public abstract class FloatingButton extends FloatingText {
     }
 
     @Override
-    protected final void internalSpawn() {
+    protected void internalSpawn() {
         super.internalSpawn();
         armorStand.setMarker(false);
     }
 
     @Override
-    protected final void internalUpdate() {
+    protected void internalUpdate() {
         super.internalUpdate();
         armorStand.setHelmet(ItemBuilders.normal(Material.STONE).build());
     }

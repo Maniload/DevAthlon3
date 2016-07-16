@@ -28,6 +28,10 @@ public class User {
     }
 
     public void sendMessage(String languageKey, Object... args) {
+        player.sendMessage(getMessage(languageKey, args));
+    }
+
+    public String getMessage(String languageKey, Object... args) {
         String message = Wizards.getLanguageManager().getMessage(locale, languageKey);
 
         // Replace prefix
@@ -38,11 +42,18 @@ public class User {
             message = message.replace("{" + i + "}", String.valueOf(args[i]));
         }
 
-        player.sendMessage(message);
+        return message;
     }
+
 
     public KitType getKitType() {
         return kitType;
+    }
+
+    public void changeKit(KitType kitType) {
+        this.kitType = kitType;
+
+        kitType.getKit().apply(player);
     }
 
     public static User getUser(Player player) {
