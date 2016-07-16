@@ -2,12 +2,11 @@ package de.craplezz.wizards;
 
 import com.google.gson.Gson;
 import de.craplezz.wizards.config.ConfigLoader;
-import de.craplezz.wizards.config.LocalesConfig;
 import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
 import de.craplezz.wizards.listener.player.PlayerInteractAtEntityListener;
 import de.craplezz.wizards.listener.player.PlayerJoinListener;
-import de.craplezz.wizards.manager.LanguageManager;
+import de.craplezz.wizards.manager.ArmorStandManager;
 import de.craplezz.wizards.map.WizardsMap;
 import de.craplezz.wizards.user.User;
 import org.bukkit.Bukkit;
@@ -31,10 +30,9 @@ public class Wizards extends JavaPlugin {
 
     // Configs
     private static MainConfig mainConfig;
-    private static LocalesConfig localesConfig;
 
     // Manager
-    private static LanguageManager languageManager;
+    private static ArmorStandManager armorStandManager;
 
     // Game
     private static Game game;
@@ -52,10 +50,9 @@ public class Wizards extends JavaPlugin {
 
             // Configs
             mainConfig = ConfigLoader.load(new File(getDataFolder(), "config.json"), MainConfig.class);
-            localesConfig = ConfigLoader.load(new File(getDataFolder(), "locales.json"), LocalesConfig.class);
 
             // Manager
-            languageManager = new LanguageManager(localesConfig.getLocales());
+            armorStandManager = new ArmorStandManager();
 
             // Game
             game = new Game();
@@ -76,9 +73,9 @@ public class Wizards extends JavaPlugin {
 
     }
 
-    public static void broadcast(String languageKey, Object... args) {
+    public static void broadcastPrefixed(String message) {
         for (User user : User.getUsers()) {
-            user.sendMessage(languageKey, args);
+            user.sendPrefixedMessage(message);
         }
     }
 
@@ -94,12 +91,8 @@ public class Wizards extends JavaPlugin {
         return mainConfig;
     }
 
-    public static LocalesConfig getLocalesConfig() {
-        return localesConfig;
-    }
-
-    public static LanguageManager getLanguageManager() {
-        return languageManager;
+    public static ArmorStandManager getArmorStandManager() {
+        return armorStandManager;
     }
 
     public static Game getGame() {

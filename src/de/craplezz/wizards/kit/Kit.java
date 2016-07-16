@@ -32,11 +32,7 @@ public abstract class Kit {
 
     protected final int id;
 
-    protected final String nameKey;
-
-    protected final String descriptionKey;
-
-    protected final ItemStack inventoryIcon;
+    protected final String name;
 
     protected final ItemStack[] inventoryItems = new ItemStack[36];
 
@@ -44,11 +40,9 @@ public abstract class Kit {
 
     protected final Set<PotionEffect> potionEffects = new HashSet<>();
 
-    public Kit(int id, String nameKey, String descriptionKey, ItemStack inventoryIcon) {
+    public Kit(int id, String name) {
         this.id = id;
-        this.nameKey = nameKey;
-        this.descriptionKey = descriptionKey;
-        this.inventoryIcon = inventoryIcon;
+        this.name = name;
 
         kitsById.put(id, this);
 
@@ -110,8 +104,8 @@ public abstract class Kit {
         potionEffects.add(potionEffect);
     }
 
-    public String getNameKey() {
-        return nameKey;
+    public String getName() {
+        return name;
     }
 
     public static Kit getById(int id) {

@@ -48,7 +48,7 @@ public class LobbyStatus extends GameStatus {
 
     @Override
     public void tickBroadcast() {
-        Wizards.broadcast(counter == 1 ? "lobby-tick-one" : "lobby-tick", counter);
+        Wizards.broadcastPrefixed("Das Spiel beginnt in §d" + counter + " Sekunde" + (counter == 1 ? "" : "n"));
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 1f, 1f);

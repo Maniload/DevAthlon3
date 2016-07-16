@@ -1,6 +1,5 @@
 package de.craplezz.wizards.user;
 
-import de.craplezz.wizards.Wizards;
 import de.craplezz.wizards.kit.KitType;
 import org.bukkit.entity.Player;
 
@@ -27,24 +26,9 @@ public class User {
         PLAYER_USER_MAP.put(player, this);
     }
 
-    public void sendMessage(String languageKey, Object... args) {
-        player.sendMessage(getMessage(languageKey, args));
+    public void sendPrefixedMessage(String message) {
+        player.sendMessage("§f[§5Wizards§f] §7");
     }
-
-    public String getMessage(String languageKey, Object... args) {
-        String message = Wizards.getLanguageManager().getMessage(locale, languageKey);
-
-        // Replace prefix
-        message = message.replace("%prefix%", Wizards.getLanguageManager().getMessage(locale, "prefix"));
-
-        // Replace args
-        for (int i = 0; i < args.length; i++) {
-            message = message.replace("{" + i + "}", String.valueOf(args[i]));
-        }
-
-        return message;
-    }
-
 
     public KitType getKitType() {
         return kitType;

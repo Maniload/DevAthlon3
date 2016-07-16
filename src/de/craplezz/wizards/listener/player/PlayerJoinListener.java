@@ -23,7 +23,7 @@ public class PlayerJoinListener implements Listener {
         User user = new User(player);
 
         if (Wizards.getGame().isLobby()) {
-            Wizards.broadcast("lobby-join", player.getName());
+            Bukkit.broadcastMessage("§d" + player.getName() + " §7hat das Spiel betreten");
 
             player.teleport(Wizards.getMainConfig().getLobbyLocation().toBukkitLocation(Bukkit.getWorld("world")));
 
