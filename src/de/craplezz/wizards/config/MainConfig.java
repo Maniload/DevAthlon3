@@ -1,6 +1,8 @@
 package de.craplezz.wizards.config;
 
 import de.craplezz.wizards.Wizards;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import java.io.File;
 
@@ -11,6 +13,7 @@ import java.io.File;
 public class MainConfig extends Config {
 
     private int neededPlayers;
+    private Location lobbyLocation = new Location(Bukkit.getWorld("world"), 0, 0, 0);
 
     public MainConfig() {
         super(new File(Wizards.getInstance().getDataFolder(), "config.json"));
@@ -18,6 +21,10 @@ public class MainConfig extends Config {
 
     public int getNeededPlayers() {
         return neededPlayers;
+    }
+
+    public Location getLobbyLocation() {
+        return lobbyLocation;
     }
 
 }
