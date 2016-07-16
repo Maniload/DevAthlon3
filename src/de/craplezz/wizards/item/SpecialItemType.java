@@ -1,6 +1,7 @@
 package de.craplezz.wizards.item;
 
 import de.craplezz.wizards.item.items.FeatherItem;
+import de.craplezz.wizards.item.items.HealingItem;
 import de.craplezz.wizards.item.items.WandItem;
 
 /**
@@ -9,7 +10,8 @@ import de.craplezz.wizards.item.items.WandItem;
  */
 public enum SpecialItemType {
     WAND (new WandItem()),
-    FEATHER (new FeatherItem());
+    FEATHER (new FeatherItem()),
+    HEALING (new HealingItem());
 
     private SpecialItem specialItem;
 

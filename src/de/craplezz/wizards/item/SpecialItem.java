@@ -22,11 +22,13 @@ public abstract class SpecialItem {
     }
 
     public final boolean use(Player player) {
-        User user = User.getUser(player);
-        if (cooldowns.containsKey(user)) {
-            return false;
+        if (initialCooldown > 0) {
+            User user = User.getUser(player);
+            if (cooldowns.containsKey(user)) {
+                return false;
+            }
+            cooldowns.put(user, initialCooldown);
         }
-        cooldowns.put(user, initialCooldown);
         internalUse(player);
         return true;
     }

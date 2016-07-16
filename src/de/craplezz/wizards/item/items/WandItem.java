@@ -13,7 +13,7 @@ import org.bukkit.entity.Snowball;
 public class WandItem extends SpecialItem {
 
     public WandItem() {
-        super(ItemBuilders.normal(Material.STICK).name("§bZauberstab §7(1 Sek. Cooldown)").build(), 20);
+        super(ItemBuilders.normal(Material.STICK).name("§bZauberstab").build(), 0);
     }
 
     @Override

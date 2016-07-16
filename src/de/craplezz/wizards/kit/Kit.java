@@ -12,9 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -54,8 +52,8 @@ public abstract class Kit {
         // Default item
         inventoryItems[0] = SpecialItemType.WAND.getSpecialItem().getItemStack();
         inventoryItems[6] = SpecialItemType.FEATHER.getSpecialItem().getItemStack();
-        inventoryItems[7] = ItemBuilders.potion().effect(new Potion(PotionType.INSTANT_HEAL)).name("item-healing").build();
-        inventoryItems[8] = ItemBuilders.normal(Material.COMPASS).name("item-compass").build();
+        inventoryItems[7] = SpecialItemType.HEALING.getSpecialItem().getItemStack();
+        inventoryItems[8] = ItemBuilders.normal(Material.COMPASS).name("§bKompass").build();
     }
 
     public void apply(Player player) {
