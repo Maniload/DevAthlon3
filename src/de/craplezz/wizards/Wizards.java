@@ -67,7 +67,7 @@ public class Wizards extends JavaPlugin {
 
             // Tasks
             bossBarTask = new BossBarTask();
-            bossBarTask.runTaskTimer(this, 20L, 20L);
+            bossBarTask.runTaskTimer(this, 20L, 1L);
 
             // Listener
             for (Listener listener : Arrays.asList(

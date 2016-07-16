@@ -1,6 +1,7 @@
 package de.craplezz.wizards.command;
 
-import de.craplezz.wizards.kit.Kit;
+import de.craplezz.wizards.kit.KitType;
+import de.craplezz.wizards.user.User;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,8 +17,8 @@ public class KitCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
         if (args.length == 1) {
-            Kit kit = Kit.getById(Integer.valueOf(args[0]));
-            kit.apply((Player) commandSender);
+            KitType kitType = KitType.values()[Integer.parseInt(args[0])];
+            User.getUser((Player) commandSender).changeKit(kitType);
         }
 
         return true;

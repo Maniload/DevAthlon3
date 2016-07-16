@@ -37,15 +37,19 @@ public class BossBarTask extends BukkitRunnable {
                     }
                     if (i >= 0) {
                         if (bossBar == null) {
-                            bossBar = Bukkit.createBossBar(specialItem.getItemStack().getItemMeta().getDisplayName(), user.getKitType().getKit().getBarColor(), BarStyle.SEGMENTED_20);
+                            bossBar = Bukkit.createBossBar(specialItem.getItemStack().getItemMeta().getDisplayName(), user.getKitType().getKit().getBarColor(), BarStyle.SOLID);
                             bossBars.get(user).put(specialItemType, bossBar);
                         }
                         bossBar.addPlayer(user.getPlayer());
-                        bossBar.setProgress(i / specialItem.getInitialCooldown());
+                        bossBar.setProgress((double) i / (double) specialItem.getInitialCooldown());
+                        specialItem.getCooldowns().adjustValue(user, -1);
                     }
-                    else if (bossBar != null) {
-                        bossBar.removeAll();
-                        bossBars.get(user).remove(specialItemType);
+                    else {
+                        if (bossBar != null) {
+                            bossBar.removeAll();
+                            bossBars.get(user).remove(specialItemType);
+                        }
+                        specialItem.getCooldowns().remove(user);
                     }
                     return false;
                 }

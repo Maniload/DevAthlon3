@@ -1,5 +1,6 @@
 package de.craplezz.wizards.kit;
 
+import de.craplezz.wizards.item.SpecialItemType;
 import de.craplezz.wizards.util.ItemBuilders;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
@@ -51,8 +52,8 @@ public abstract class Kit {
         kitsById.put(id, this);
 
         // Default item
-        inventoryItems[0] = ItemBuilders.normal(Material.STICK).name("item-stick").build();
-        inventoryItems[6] = ItemBuilders.normal(Material.FEATHER).name("item-feather").build();
+        inventoryItems[0] = SpecialItemType.WAND.getSpecialItem().getItemStack();
+        inventoryItems[6] = SpecialItemType.FEATHER.getSpecialItem().getItemStack();
         inventoryItems[7] = ItemBuilders.potion().effect(new Potion(PotionType.INSTANT_HEAL)).name("item-healing").build();
         inventoryItems[8] = ItemBuilders.normal(Material.COMPASS).name("item-compass").build();
     }

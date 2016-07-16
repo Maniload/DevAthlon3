@@ -1,5 +1,6 @@
 package de.craplezz.wizards.item;
 
+import de.craplezz.wizards.item.items.FeatherItem;
 import de.craplezz.wizards.item.items.WandItem;
 
 /**
@@ -7,7 +8,8 @@ import de.craplezz.wizards.item.items.WandItem;
  * @version 1.0
  */
 public enum SpecialItemType {
-    WAND (new WandItem());
+    WAND (new WandItem()),
+    FEATHER (new FeatherItem());
 
     private SpecialItem specialItem;
 
