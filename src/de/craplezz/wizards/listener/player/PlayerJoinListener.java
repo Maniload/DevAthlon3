@@ -26,6 +26,10 @@ public class PlayerJoinListener implements Listener {
             Wizards.broadcast("lobby-join", player.getName());
 
             player.teleport(Wizards.getMainConfig().getLobbyLocation().toBukkitLocation(Bukkit.getWorld("world")));
+
+            if (Wizards.getGame().canStart()) {
+                Wizards.getGame().startGame();
+            }
         }
 
     }

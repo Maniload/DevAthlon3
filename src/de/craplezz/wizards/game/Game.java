@@ -23,6 +23,12 @@ public class Game {
         return gameState == GameState.END;
     }
 
+    public void changeGameState(GameState newGameState) {
+        gameState.getGameStatus().onLeave();
+        gameState = newGameState;
+        gameState.getGameStatus().onEnter();
+    }
+
     public boolean canStart() {
         return Bukkit.getOnlinePlayers().size() >= Wizards.getMainConfig().getNeededPlayers();
     }

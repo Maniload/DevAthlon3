@@ -1,7 +1,12 @@
 package de.craplezz.wizards.game.status;
 
 import com.google.common.collect.Sets;
+import de.craplezz.wizards.Wizards;
+import de.craplezz.wizards.game.GameState;
 import de.craplezz.wizards.game.GameStatus;
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 
 /**
  * @author Overload
@@ -23,4 +28,25 @@ public class LobbyStatus extends GameStatus {
 
     }
 
+    @Override
+    public void onCountdownFinished() {
+        Wizards.getGame().changeGameState(GameState.IN_GAME);
+    }
+
+    @Override
+    public void tickSecond() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.setExp(counter / initialCounter);
+            player.setLevel(counter);
+        }
+    }
+
+    @Override
+    public void tickBroadcast() {
+        Wizards.broadcast("lobby-tick", counter);
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BASEDRUM, 1f, 1f);
+        }
+    }
 }

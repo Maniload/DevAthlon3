@@ -17,7 +17,7 @@ public class User {
     private static final Map<Player, User> PLAYER_USER_MAP = new HashMap<>();
 
     private Player player;
-    private Locale locale = Locale.GERMANY;
+    private Locale locale = Locale.forLanguageTag("de_DE");
 
     public User(Player player) {
         this.player = player;

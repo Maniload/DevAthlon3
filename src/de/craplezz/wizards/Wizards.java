@@ -7,6 +7,7 @@ import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
 import de.craplezz.wizards.listener.player.PlayerJoinListener;
 import de.craplezz.wizards.manager.LanguageManager;
+import de.craplezz.wizards.map.WizardsMap;
 import de.craplezz.wizards.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -36,6 +37,7 @@ public class Wizards extends JavaPlugin {
 
     // Game
     private static Game game;
+    private static WizardsMap map;
 
     @Override
     public void onEnable() {
@@ -56,6 +58,8 @@ public class Wizards extends JavaPlugin {
 
             // Game
             game = new Game();
+            map = new WizardsMap();
+            map.load();
 
             // Listener
             for (Listener listener : Arrays.asList(
@@ -98,5 +102,9 @@ public class Wizards extends JavaPlugin {
 
     public static Game getGame() {
         return game;
+    }
+
+    public static WizardsMap getMap() {
+        return map;
     }
 }

@@ -11,11 +11,13 @@ import java.util.Set;
  */
 public abstract class GameStatus extends BukkitRunnable {
 
-    private int counter;
+    protected final int initialCounter;
+    protected int counter;
     private Set<Integer> broadcastTimes;
 
     public GameStatus(int counter, Set<Integer> broadcastTimes) {
-        this.counter = counter;
+        this.initialCounter = counter;
+        this.counter = initialCounter;
         this.broadcastTimes = broadcastTimes;
     }
 
@@ -31,6 +33,12 @@ public abstract class GameStatus extends BukkitRunnable {
         if (broadcastTimes.contains(counter--)) {
             tickBroadcast();
         }
+
+        if (counter <= 0) {
+            cancel();
+
+            onCountdownFinished();
+        }
     }
 
     public abstract void onEnter();
@@ -40,5 +48,7 @@ public abstract class GameStatus extends BukkitRunnable {
     public void tickSecond() {}
 
     public void tickBroadcast() {}
+
+    public void onCountdownFinished() {}
 
 }
