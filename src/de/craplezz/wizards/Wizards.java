@@ -1,6 +1,7 @@
 package de.craplezz.wizards;
 
 import com.google.gson.Gson;
+import de.craplezz.wizards.config.ConfigLoader;
 import de.craplezz.wizards.config.LocalesConfig;
 import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
@@ -11,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -46,11 +48,8 @@ public class Wizards extends JavaPlugin {
         try {
 
             // Configs
-            mainConfig = new MainConfig();
-            localesConfig = new LocalesConfig();
-
-            mainConfig.load();
-            localesConfig.load();
+            mainConfig = ConfigLoader.load(new File(getDataFolder(), "config.json"), MainConfig.class);
+            localesConfig = ConfigLoader.load(new File(getDataFolder(), "locales.json"), LocalesConfig.class);
 
             // Manager
             languageManager = new LanguageManager(localesConfig.getLocales());

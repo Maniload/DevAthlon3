@@ -2,6 +2,7 @@ package de.craplezz.wizards.listener.player;
 
 import de.craplezz.wizards.Wizards;
 import de.craplezz.wizards.user.User;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +25,7 @@ public class PlayerJoinListener implements Listener {
         if (Wizards.getGame().isLobby()) {
             Wizards.broadcast("lobby-join", player.getName());
 
-            player.teleport(Wizards.getMainConfig().getLobbyLocation());
+            player.teleport(Wizards.getMainConfig().getLobbyLocation().toBukkitLocation(Bukkit.getWorld("world")));
         }
 
     }
