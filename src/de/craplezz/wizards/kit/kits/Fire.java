@@ -22,7 +22,7 @@ public class Fire extends Kit {
         armorItems[LEGGINGS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.LEGGINGS).dye(Color.RED).unbreakable().build();
         armorItems[BOOTS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.BOOTS).dye(Color.RED).unbreakable().build();
 
-        inventoryItems[3] = SpecialItemType.FIRE_TRAIL.getSpecialItem().getItemStack();
+        inventoryItems[2] = SpecialItemType.FIRE_TRAIL.getSpecialItem().getItemStack();
         inventoryItems[3] = SpecialItemType.METEOR.getSpecialItem().getItemStack();
 
         potionEffects.add(new InfinitePotionEffect(PotionEffectType.FIRE_RESISTANCE, 0));

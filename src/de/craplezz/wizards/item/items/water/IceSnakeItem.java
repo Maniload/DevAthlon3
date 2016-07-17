@@ -3,10 +3,16 @@ package de.craplezz.wizards.item.items.water;
 import de.craplezz.wizards.Wizards;
 import de.craplezz.wizards.item.SpecialItem;
 import de.craplezz.wizards.util.ItemBuilders;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Overload
@@ -26,19 +32,23 @@ public class IceSnakeItem extends SpecialItem {
 
             int length = 1;
             Location location = player.getLocation().clone();
+            Set<Location> subLocations = new HashSet<>();
 
             @Override
             public void run() {
                 if (length++ < 10) {
                     Location subLocation = location.add(player.getLocation().getDirection()).clone();
+                    subLocations.add(subLocation);
 
-                    subLocation.getWorld().spigot().playEffect(subLocation, Effect.SNOW_SHOVEL, 0, 0, 1, 1, 1, 1, 10, 64);
+                    for (Location location : subLocations) {
+                        subLocation.getWorld().spigot().playEffect(subLocation, Effect.SNOW_SHOVEL, 0, 0, 0.1f, 0.1f, 0.1f, 0.1f, 10, 64);
 
-                    for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                        if (!onlinePlayer.equals(player) && onlinePlayer.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR &&
-                                onlinePlayer.getLocation().distanceSquared(player.getLocation()) <= RADIUS_SQUARED) {
-                            onlinePlayer.setVelocity(player.getLocation().getDirection().multiply(-1));
-                            onlinePlayer.damage(8, player);
+                        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                            if (!onlinePlayer.equals(player) && onlinePlayer.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR &&
+                                    onlinePlayer.getLocation().distanceSquared(location) <= RADIUS_SQUARED) {
+                                onlinePlayer.setVelocity(player.getLocation().getDirection().multiply(1));
+                                onlinePlayer.damage(8, player);
+                            }
                         }
                     }
                 }
@@ -47,6 +57,6 @@ public class IceSnakeItem extends SpecialItem {
                 }
             }
 
-        }.runTaskTimer(Wizards.getInstance(), 0L, 1L);
+        }.runTaskTimer(Wizards.getInstance(), 0L, 5L);
     }
 }

@@ -20,8 +20,8 @@ public class Water extends Kit {
         armorItems[LEGGINGS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.LEGGINGS).dye(Color.BLUE).unbreakable().build();
         armorItems[BOOTS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.BOOTS).dye(Color.BLUE).unbreakable().build();
 
-        inventoryItems[3] = SpecialItemType.WATER_GUN.getSpecialItem().getItemStack();
-        inventoryItems[4] = SpecialItemType.ICE_SNAKE.getSpecialItem().getItemStack();
+        inventoryItems[2] = SpecialItemType.WATER_GUN.getSpecialItem().getItemStack();
+        inventoryItems[3] = SpecialItemType.ICE_SNAKE.getSpecialItem().getItemStack();
     }
 
 }

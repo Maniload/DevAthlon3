@@ -22,6 +22,9 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
         User user = new User(player);
 
+        player.setMaxHealth(40);
+        player.setHealth(40);
+
         if (Wizards.getGame().isLobby()) {
             Bukkit.broadcastMessage("§d" + player.getName() + " §7hat das Spiel betreten");
 

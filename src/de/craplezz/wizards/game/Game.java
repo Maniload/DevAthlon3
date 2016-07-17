@@ -1,6 +1,7 @@
 package de.craplezz.wizards.game;
 
 import de.craplezz.wizards.Wizards;
+import de.craplezz.wizards.user.User;
 import org.bukkit.Bukkit;
 
 /**
@@ -34,7 +35,13 @@ public class Game {
     }
 
     public boolean canStart() {
-        return Bukkit.getOnlinePlayers().size() >= Wizards.getMainConfig().getNeededPlayers();
+        boolean allEquiped = true;
+        for (User user : User.getUsers()) {
+            if (user.getKitType() == null) {
+                allEquiped = false;
+            }
+        }
+        return Bukkit.getOnlinePlayers().size() >= Wizards.getMainConfig().getNeededPlayers() && allEquiped;
     }
 
     public void startGame() {

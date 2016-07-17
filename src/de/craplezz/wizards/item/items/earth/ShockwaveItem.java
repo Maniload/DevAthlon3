@@ -27,16 +27,16 @@ public class ShockwaveItem extends SpecialItem {
             @Override
             public void run() {
                 if (radius++ < 7) {
-                    for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / (radius * 2)) {
+                    for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / (double) (radius * 2)) {
                         Location location = player.getLocation().clone().add(Math.sin(angle) * radius, 0, Math.cos(angle) * radius);
-                        player.getWorld().spigot().playEffect(location, Effect.TILE_DUST);
+                        player.getWorld().spigot().playEffect(location, Effect.CRIT);
                         player.playSound(location, Sound.BLOCK_GRAVEL_BREAK, 1f, 1f);
                     }
 
                     for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                         if (!onlinePlayer.equals(player) && onlinePlayer.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR &&
                                 onlinePlayer.getLocation().distanceSquared(player.getLocation()) <= radius * radius) {
-                            onlinePlayer.setVelocity(onlinePlayer.getVelocity().setY(3));
+                            onlinePlayer.setVelocity(onlinePlayer.getVelocity().setY(1));
                         }
                     }
                 }
