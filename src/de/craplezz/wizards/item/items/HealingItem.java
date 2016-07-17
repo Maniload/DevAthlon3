@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionType;
 public class HealingItem extends SpecialItem {
 
     public HealingItem() {
-        super(ItemBuilders.potion().effect(new Potion(PotionType.INSTANT_HEAL)).name("§bHeilung §7(10 Sek. Cooldown)").build(), 200);
+        super(ItemBuilders.potion().effect(new Potion(PotionType.INSTANT_HEAL)).name("§bHeilung §7(15 Sek. Cooldown)").build(), 300);
     }
 
     @Override

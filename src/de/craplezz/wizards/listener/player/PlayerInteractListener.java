@@ -1,6 +1,9 @@
 package de.craplezz.wizards.listener.player;
 
 import de.craplezz.wizards.item.SpecialItemType;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -17,12 +20,18 @@ public class PlayerInteractListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         ItemStack itemStack = event.getItem();
+        Block block = event.getClickedBlock();
 
         if (event.getAction() != Action.PHYSICAL && itemStack != null) {
             for (SpecialItemType specialItemType : SpecialItemType.values()) {
                 if (specialItemType.getSpecialItem().getItemStack().getType() == itemStack.getType()) {
                     specialItemType.getSpecialItem().use(event.getPlayer());
                 }
+            }
+
+            // Block fire breaking
+            if (event.getAction() == Action.LEFT_CLICK_BLOCK && block != null && block.getRelative(BlockFace.UP).getType() == Material.FIRE) {
+                event.setCancelled(true);
             }
         }
 

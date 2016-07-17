@@ -1,5 +1,6 @@
 package de.craplezz.wizards.kit.kits;
 
+import de.craplezz.wizards.item.SpecialItemType;
 import de.craplezz.wizards.kit.Kit;
 import de.craplezz.wizards.util.ItemBuilders;
 import org.bukkit.Color;
@@ -18,6 +19,9 @@ public class Earth extends Kit {
         armorItems[CHESTPLATE] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.CHESTPLATE).dye(Color.GREEN).unbreakable().build();
         armorItems[LEGGINGS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.LEGGINGS).dye(Color.GREEN).unbreakable().build();
         armorItems[BOOTS] = ItemBuilders.armor(ItemBuilders.LeatherArmorItemBuilder.ArmorElement.BOOTS).dye(Color.GREEN).unbreakable().build();
+
+        inventoryItems[2] = SpecialItemType.POISON_TRAIL.getSpecialItem().getItemStack();
+        inventoryItems[3] = SpecialItemType.SHOCKWAVE.getSpecialItem().getItemStack();
     }
 
 }

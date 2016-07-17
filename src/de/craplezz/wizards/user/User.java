@@ -20,6 +20,10 @@ public class User {
     private Locale locale = Locale.forLanguageTag("de_DE");
     private KitType kitType;
 
+    // Special item specific
+    private boolean fireTrail;
+    private boolean poisonTrail;
+
     public User(Player player) {
         this.player = player;
 
@@ -42,6 +46,22 @@ public class User {
         this.kitType = kitType;
 
         kitType.getKit().apply(player);
+    }
+
+    public boolean hasFireTrail() {
+        return fireTrail;
+    }
+
+    public void setFireTrail(boolean fireTrail) {
+        this.fireTrail = fireTrail;
+    }
+
+    public boolean hasPoisonTrail() {
+        return poisonTrail;
+    }
+
+    public void setPoisonTrail(boolean poisonTrail) {
+        this.poisonTrail = poisonTrail;
     }
 
     public static User getUser(Player player) {

@@ -6,6 +6,7 @@ import de.craplezz.wizards.kit.KitType;
 import de.craplezz.wizards.user.User;
 import de.craplezz.wizards.util.SimpleLocation;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
@@ -31,6 +32,11 @@ public class LobbyMap {
         int index = 0;
         for (SimpleLocation simpleLocation : mapConfig.getArmorStandLocations()) {
             KitType kitType = KitType.values()[index++];
+            Location location = simpleLocation.toBukkitLocation(world);
+
+            if (!location.getChunk().isLoaded()) {
+                location.getChunk().load();
+            }
 
             ArmorStand armorStand = world.spawn(simpleLocation.toBukkitLocation(world), ArmorStand.class);
             armorStand.setArms(true);

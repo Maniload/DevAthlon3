@@ -5,9 +5,14 @@ import de.craplezz.wizards.command.KitCommand;
 import de.craplezz.wizards.config.ConfigLoader;
 import de.craplezz.wizards.config.MainConfig;
 import de.craplezz.wizards.game.Game;
+import de.craplezz.wizards.listener.block.BlockBreakListener;
+import de.craplezz.wizards.listener.block.BlockPlaceListener;
+import de.craplezz.wizards.listener.entity.EntityDamageByEntityListener;
+import de.craplezz.wizards.listener.entity.ProjectileHitListener;
 import de.craplezz.wizards.listener.player.PlayerInteractAtEntityListener;
 import de.craplezz.wizards.listener.player.PlayerInteractListener;
 import de.craplezz.wizards.listener.player.PlayerJoinListener;
+import de.craplezz.wizards.listener.player.PlayerMoveListener;
 import de.craplezz.wizards.manager.ArmorStandManager;
 import de.craplezz.wizards.map.WizardsMap;
 import de.craplezz.wizards.task.BossBarTask;
@@ -73,7 +78,12 @@ public class Wizards extends JavaPlugin {
             for (Listener listener : Arrays.asList(
                     new PlayerJoinListener(),
                     new PlayerInteractAtEntityListener(),
-                    new PlayerInteractListener()
+                    new PlayerInteractListener(),
+                    new PlayerMoveListener(),
+                    new BlockBreakListener(),
+                    new BlockPlaceListener(),
+                    new EntityDamageByEntityListener(),
+                    new ProjectileHitListener()
             )) {
                 Bukkit.getPluginManager().registerEvents(listener, this);
             }
