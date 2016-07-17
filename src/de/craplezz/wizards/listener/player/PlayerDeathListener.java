@@ -13,7 +13,9 @@ public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
-        event.setDeathMessage("§b" + event.getEntity().getName() + " §7ist gestorben.");
+        event.setDeathMessage("");
+        event.setKeepLevel(true);
+        event.setKeepInventory(true);
 
         event.getEntity().kickPlayer("§7Du bist gestorben.");
 

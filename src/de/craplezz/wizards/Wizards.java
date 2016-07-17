@@ -85,7 +85,8 @@ public class Wizards extends JavaPlugin {
                     new EntityExplodeListener(),
                     new PlayerDeathListener(),
                     new PlayerFoodLevelChangeListener(),
-                    new PlayerItemConsumeListener()
+                    new PlayerItemConsumeListener(),
+                    new PlayerDisconnectListener()
             )) {
                 Bukkit.getPluginManager().registerEvents(listener, this);
             }

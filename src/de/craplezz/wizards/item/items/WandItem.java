@@ -23,11 +23,11 @@ public class WandItem extends SpecialItem {
     @Override
     protected void internalUse(Player player) {
         for (int lenght = 1; lenght < 6; lenght++) {
-            Location location = player.getLocation().clone().add(player.getLocation().getDirection().multiply(lenght));
+            Location location = player.getEyeLocation().clone().add(player.getLocation().getDirection().multiply(lenght));
             location.getWorld().spigot().playEffect(location, Effect.CLOUD, 0, 0, 0, 0, 0, 0, 1, 64);
 
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                if (!onlinePlayer.equals(player) && onlinePlayer.getLocation().distanceSquared(player.getLocation()) <= RADIUS_SQUARED) {
+                if (!onlinePlayer.equals(player) && onlinePlayer.getLocation().distanceSquared(location) <= RADIUS_SQUARED) {
                     onlinePlayer.damage(2, player);
                 }
             }

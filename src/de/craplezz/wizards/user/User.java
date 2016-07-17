@@ -1,5 +1,6 @@
 package de.craplezz.wizards.user;
 
+import de.craplezz.wizards.Wizards;
 import de.craplezz.wizards.kit.KitType;
 import org.bukkit.entity.Player;
 
@@ -46,6 +47,10 @@ public class User {
         this.kitType = kitType;
 
         kitType.getKit().apply(player);
+
+        if (Wizards.getGame().canStart() && Wizards.getGame().isLobby() && !Wizards.getGame().getGameState().getGameStatus().isStarted()) {
+            Wizards.getGame().startGame();
+        }
     }
 
     public boolean hasFireTrail() {

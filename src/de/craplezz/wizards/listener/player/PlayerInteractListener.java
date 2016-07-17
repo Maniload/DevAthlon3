@@ -28,11 +28,11 @@ public class PlayerInteractListener implements Listener {
                     specialItemType.getSpecialItem().use(event.getPlayer());
                 }
             }
+        }
 
-            // Block fire breaking
-            if (event.getAction() == Action.LEFT_CLICK_BLOCK && block != null && block.getRelative(BlockFace.UP).getType() == Material.FIRE) {
-                event.setCancelled(true);
-            }
+        // Block fire breaking
+        if (event.getAction() == Action.LEFT_CLICK_BLOCK && block != null && block.getRelative(BlockFace.UP).getType() == Material.FIRE) {
+            event.setCancelled(true);
         }
 
     }
